@@ -1,13 +1,10 @@
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : Item
 {
-    private Rigidbody rb;
-
-    private void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody>();
-
+        base.Start();
         GameManager.Instance.RegisterBall(this);
     }
 

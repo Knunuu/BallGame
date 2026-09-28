@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         if (roomFactory == null)
             return;
 
-        rooms[2] = roomFactory.CreateVariationRoom(roomLocations[2], 0, 0); //creates the first room with the empty variation
+        rooms[2] = roomFactory.CreateVariationRoom(roomLocations[2], "None", "None"); //creates the first room with the empty variation
 
         for (int i = 0; i < roomLocations.Length; i++)
         {
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
             rooms[i] = roomFactory.CreateRandomRoom(roomLocations[i]);
         }
 
+        ItemFactory.Instance.SpawnItem(rooms[2].GetBallSpawnPoint().position, "Ball", 0f); //creates the ball in the middle room
+        // ball spawned as null parent so that it is destroyed when changing scenes, but not when changing rooms
         LoadRoom(2); // Load the middle room at the start
     }
 
@@ -83,6 +85,15 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Invalid room index: " + roomIndex);
             return;
+        }
+
+        // Disable all non-active rooms
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            if (rooms[i] != null)
+            {
+                rooms[i].gameObject.SetActive(i == roomIndex);
+            }
         }
 
         currentRoomIndex = roomIndex;

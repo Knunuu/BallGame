@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1332515188066498146}
   - component: {fileID: 5635843968177129685}
+  - component: {fileID: 7004871474384326263}
+  - component: {fileID: 5497872659243419197}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,9 +46,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d38eb744ecf2bff4682d8c0f1b3408ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  rooms:
+  roomLocations:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &7004871474384326263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109462354165569031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe050e98e3656c479ddd6978216b12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomFactory
+  baseRoom: {fileID: 2812014350567906653, guid: 3c432b47e96655844a9adb6e598352f0, type: 3}
+  roomVariations:
+  - {fileID: 11400000, guid: 7556ed2632f84154d95bff151cf43080, type: 2}
+  - {fileID: 11400000, guid: c93a13496b6ea454db3d3f60ef7ece28, type: 2}
+  - {fileID: 11400000, guid: 5c0e37f34bddb2244992ab8893940ead, type: 2}
+--- !u!114 &5497872659243419197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109462354165569031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0851036ae9eee2845b20d490f8d8dc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemFactory
+  itemPrefabs:
+  - {fileID: 6645836652517635007, guid: 259bb183755ef26478bab0f3e5550ec0, type: 3}
+  - {fileID: 6294542970526870517, guid: e52d5ab6003437d408ac26ffc594032e, type: 3}
+  - {fileID: 3190851519120439117, guid: 444becbc8273a42479e07128c4179945, type: 3}
