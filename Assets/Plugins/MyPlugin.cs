@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 
 [StructLayout(LayoutKind.Sequential)]
@@ -32,5 +33,4 @@ public static class MyPlugin
     {
         get { return GetPosition(); }
     }
-
 }
