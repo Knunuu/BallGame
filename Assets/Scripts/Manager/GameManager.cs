@@ -1,17 +1,16 @@
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public event Action RoomLoaded;
+    public bool HasLoadedRoom => currentRoom != null;
+
     private RoomFactory roomFactory;
 
     [SerializeField] private Transform[] roomLocations = new Transform[5];
     private Room[] rooms = new Room[5];
-
-    private Player[] team1Players = new Player[2];
-    private Player[] team2Players = new Player[2];
-    private Ball ball;
-    private Camera cameraController;
 
     private Room currentRoom;
     private int currentRoomIndex;
@@ -55,7 +54,7 @@ public class GameManager : MonoBehaviour
         LoadRoom(2); // Load the middle room at the start
     }
 
-    private void Update()
+    private void Update() //for testing purposes, allows switching between rooms using number keys 1-5
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -79,7 +78,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadRoom(int roomIndex)
+    public void OnGoalScored(int teamNumber)
+    {
+        Debug.Log("Goal scored by Team " + teamNumber + " in Room " + currentRoomIndex);
+
+        if (teamNumber == 1)
+        {
+           LoadRoom(currentRoomIndex - 1); // Load the next room when a goal is scored
+        }
+        else if (teamNumber == 2)
+        {
+            LoadRoom(currentRoomIndex + 1); // Load the next room when a goal is scored
+        }
+
+    }
+
+    private void LoadRoom(int roomIndex)
     {
         if (roomIndex < 0 || roomIndex >= rooms.Length)
         {
@@ -103,35 +117,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Loaded Room: " + currentRoom.name);
     }
 
-    public void NotifyRoomLoaded()
+    private void NotifyRoomLoaded()
     {
-        if (team1Players != null)
-        {
-            foreach (var player in team1Players)
-            {
-                if (player != null)
-                    player.OnRoomLoaded();
-            }
-        }
-
-        if (team2Players != null)
-        {
-            foreach (var player in team2Players)
-            {
-                if (player != null)
-                    player.OnRoomLoaded();
-            }
-        }
-
-        if (ball != null)
-        {
-            ball.OnRoomLoaded();
-        }
-
-        if (cameraController != null)
-        {
-            cameraController.OnRoomLoaded();
-        }
+        RoomLoaded?.Invoke();
     }
 
     public Transform[] GetSpawnPoints(int team)
@@ -164,48 +152,4 @@ public class GameManager : MonoBehaviour
         return currentRoom != null ? currentRoom.GetCameraStartLocation() : null;
     }
 
-    public void RegisterPlayer(Player player, int team)
-    {
-        if (player != null)
-        {
-            if (team == 1)
-            {
-                for (int i = 0; i < team1Players.Length; i++)
-                {
-                    if (team1Players[i] == null)
-                    {
-                        team1Players[i] = player;
-                        break;
-                    }
-                }
-            }
-            else if (team == 2)
-            {
-                for (int i = 0; i < team2Players.Length; i++)
-                {
-                    if (team2Players[i] == null)
-                    {
-                        team2Players[i] = player;
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    public void RegisterBall(Ball ballInstance)
-    {
-        if (ballInstance != null)
-        {
-            ball = ballInstance;
-        }
-    }
-
-    public void RegisterCamera(Camera cameraInstance)
-    {
-        if (cameraInstance != null)
-        {
-            cameraController = cameraInstance;
-        }
-    }
 }

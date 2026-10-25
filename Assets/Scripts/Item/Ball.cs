@@ -2,10 +2,41 @@ using UnityEngine;
 
 public class Ball : Item
 {
+    private GameManager subscribedGameManager;
+
+    private void OnEnable()
+    {
+        SubscribeToRoomLoaded();
+    }
+
     protected override void Start()
     {
         base.Start();
-        GameManager.Instance.RegisterBall(this);
+        SubscribeToRoomLoaded();
+        if (subscribedGameManager != null && subscribedGameManager.HasLoadedRoom)
+        {
+            OnRoomLoaded();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (subscribedGameManager != null)
+        {
+            subscribedGameManager.RoomLoaded -= OnRoomLoaded;
+            subscribedGameManager = null;
+        }
+    }
+
+    private void SubscribeToRoomLoaded()
+    {
+        if (GameManager.Instance == null || subscribedGameManager == GameManager.Instance)
+        {
+            return;
+        }
+
+        subscribedGameManager = GameManager.Instance;
+        subscribedGameManager.RoomLoaded += OnRoomLoaded;
     }
 
     public void OnRoomLoaded()
