@@ -22,6 +22,21 @@ public static class MyPlugin
     [DllImport("DLL_Unity_GED")]
     private static extern Vector2D SetPosition(float x, float y);
 
+    [DllImport("DLL_Unity_GED")]
+    private static extern void SetTimer(int milliseconds);
+
+    [DllImport("DLL_Unity_GED")]
+    private static extern bool IsTimerFinished();
+
+    [DllImport("DLL_Unity_GED")]
+    private static extern void ResetTimer();
+
+    [DllImport("DLL_Unity_GED")]
+    private static extern void AddTime(int milliseconds);
+
+    [DllImport("DLL_Unity_GED")]
+    private static extern int GetTimerDuration();
+
     public static int ID
     {
         get { return GetID(); }
