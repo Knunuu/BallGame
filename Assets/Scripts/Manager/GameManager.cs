@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public bool HasLoadedRoom => currentRoom != null;
 
     private RoomFactory roomFactory;
+    private ItemFactory ballFactory;
 
     [SerializeField] private Transform[] roomLocations = new Transform[5];
     private Room[] rooms = new Room[5];
@@ -49,8 +50,8 @@ public class GameManager : MonoBehaviour
             rooms[i] = roomFactory.CreateRandomRoom(roomLocations[i]);
         }
 
-        ItemFactory.Instance.SpawnItem(rooms[2].GetBallSpawnPoint().position, "Ball", 0f); //creates the ball in the middle room
-        // ball spawned as null parent so that it is destroyed when changing scenes, but not when changing rooms
+        ballFactory = GetComponent<ItemFactory>();
+        ballFactory.CreateItem(rooms[2].GetBallSpawnPoint().position); //creates the ball in the middle room
         LoadRoom(2); // Load the middle room at the start
     }
 

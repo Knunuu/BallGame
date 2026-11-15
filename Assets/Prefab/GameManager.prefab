@@ -2528,7 +2528,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0851036ae9eee2845b20d490f8d8dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemFactory
-  itemPrefabs:
-  - {fileID: 6645836652517635007, guid: 259bb183755ef26478bab0f3e5550ec0, type: 3}
-  - {fileID: 6294542970526870517, guid: e52d5ab6003437d408ac26ffc594032e, type: 3}
-  - {fileID: 3190851519120439117, guid: 444becbc8273a42479e07128c4179945, type: 3}
+  baseItem: {fileID: 7313111465601830146, guid: 259bb183755ef26478bab0f3e5550ec0, type: 3}
+  gravityEnabled: 0

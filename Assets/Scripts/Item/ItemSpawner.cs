@@ -7,6 +7,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private Vector2 spawnAreaMax = new Vector2(5f, 5f);
     [SerializeField] private float minSpawnTime = 1f;
     [SerializeField] private float maxSpawnTime = 5f;
+    [SerializeField] private ItemFactory itemFactory;
 
     private bool isSpawning = true;
 
@@ -28,11 +29,12 @@ public class ItemSpawner : MonoBehaviour
                 0f
             );
 
-            bool gravityEnabled = Random.value > 0.5f; // Randomly decide if gravity should be enabled for this item
-
-           ItemFactory.Instance.SpawnRandomItem(spawnPosition, 0f, this.transform, gravityEnabled); //spawn item as child to disable when needed
+           Item instance = itemFactory.CreateItem(spawnPosition, false, this.transform);
+           instance.gameObject.SetActive(true); // Activate the item instance
         }
     }
+
+
 
     private void OnEnable()
     {

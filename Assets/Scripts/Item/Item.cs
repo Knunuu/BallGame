@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    protected Rigidbody rb;
+    private Rigidbody rb;
 
-    protected virtual void Start()
+    public virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
     }

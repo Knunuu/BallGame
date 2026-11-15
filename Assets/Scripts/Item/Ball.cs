@@ -3,15 +3,16 @@ using UnityEngine;
 public class Ball : Item
 {
     private GameManager subscribedGameManager;
+    private Rigidbody rb;
 
     private void OnEnable()
     {
         SubscribeToRoomLoaded();
     }
 
-    protected override void Start()
+    public override void Start()
     {
-        base.Start();
+        rb = GetComponent<Rigidbody>();
         SubscribeToRoomLoaded();
         if (subscribedGameManager != null && subscribedGameManager.HasLoadedRoom)
         {
@@ -41,7 +42,7 @@ public class Ball : Item
 
     public void OnRoomLoaded()
     {
-        Respawn();
+        Invoke(nameof(Respawn), 0.1f); // Delay the respawn to ensure the room is fully loaded
         // Additional logic for when a room is loaded can be added here
     }
 
