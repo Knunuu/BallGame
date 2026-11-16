@@ -19,6 +19,28 @@ public class Earth : Item
         Invoke(nameof(DisableSpawnProtection), 0.2f); // Disable spawn protection after a short delay
     }
 
+    private void OnEnable()
+    {
+        Invoke(nameof(DisableSpawnProtection), 0.2f); // Disable spawn protection after a short delay
+        wallStopped = false; // Reset wallStopped when the object is enabled
+        startPosition = transform.position; // Reset start position when the object is enabled
+        if (wallInstance != null)
+        {
+            wallInstance.SetActive(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke(nameof(DisableSpawnProtection));
+        spawnProtection = true; // Reset spawn protection when the object is disabled
+        if (wallInstance != null)
+        {
+            wallInstance.transform.localScale = new Vector3(0f, wallPrefab.transform.localScale.y, wallPrefab.transform.localScale.z); // Reset the wall scale
+            wallInstance.SetActive(false); // Hide the wall instance when the object is disabled
+        }
+    }
+
     private void DisableSpawnProtection()
     {
         spawnProtection = false;
@@ -55,8 +77,7 @@ public class Earth : Item
 
     private void DestroyEarth()
     {
-        Destroy(wallInstance);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,7 +86,7 @@ public class Earth : Item
         {
             return; // Ignore collisions during spawn protection
         }
-        
+
         WallStop();
     }
 }

@@ -288,7 +288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EarthPower
   earthProjectile: {fileID: 7309001885512279636, guid: 3d05297c03710f544a468abba4f146bd, type: 3}
-  coolown: 10
+  cooldown: 10
+  maxCharge: 2
 --- !u!136 &1447433686211668525
 CapsuleCollider:
   m_ObjectHideFlags: 0
