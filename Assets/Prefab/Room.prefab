@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 237925883137040661}
   - component: {fileID: 8131706255274580067}
   - component: {fileID: 5118733014365278074}
-  - component: {fileID: 5336366405883623272}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -129,7 +128,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2812014350567906653}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57ebe54c262f0c64893b0b3e6ad2d2a9, type: 3}
   m_Name: 
@@ -153,23 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemFactory
   baseItem: {fileID: 7313111465601830146, guid: 444becbc8273a42479e07128c4179945, type: 3}
   gravityEnabled: 0
---- !u!114 &5336366405883623272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2812014350567906653}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf24adf068d7a443940f2662b16b415, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemSpawner
-  spawnAreaMin: {x: -5, y: -2}
-  spawnAreaMax: {x: 5, y: 2}
-  minSpawnTime: 1
-  maxSpawnTime: 5
-  itemFactory: {fileID: 5118733014365278074}
 --- !u!1 &3021995088699731342
 GameObject:
   m_ObjectHideFlags: 0

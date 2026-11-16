@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 8f;
     [SerializeField] private PlayerPower equippedPower;
+    [SerializeField] private Transform holdArea;
 
     private Rigidbody rb;
     private Vector3 movementInput;
@@ -80,6 +81,7 @@ public class Player : MonoBehaviour
         if (ctx.performed && powerCommand != null)
         {
             powerCommand.Execute();
+            Debug.Log("Power activated: " + equippedPower.name);
         }
     }
 
@@ -110,5 +112,10 @@ public class Player : MonoBehaviour
     private void Respawn()
     {
         transform.position = GameManager.Instance.GetSpawnPoints(team)[0].position;
+    }
+
+    public Transform GetHoldArea()
+    {
+        return holdArea;
     }
 }

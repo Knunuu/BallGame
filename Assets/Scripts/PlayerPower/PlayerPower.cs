@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class PlayerPower : MonoBehaviour
 {
+    protected Player playerRef;
+
+    public virtual void Start()
+    {
+        playerRef = GetComponent<Player>();
+    }
+    
     public virtual void ActivatePower()
     {
         // Implement the logic for activating the player's power here

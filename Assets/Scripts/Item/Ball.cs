@@ -3,7 +3,6 @@ using UnityEngine;
 public class Ball : Item
 {
     private GameManager subscribedGameManager;
-    private Rigidbody rb;
 
     private void OnEnable()
     {

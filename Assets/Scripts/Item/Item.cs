@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private Rigidbody rb;
+    protected Rigidbody rb;
 
     public virtual void Start()
     {
